@@ -96,5 +96,27 @@ Use the following command to start the navigation (you need to locallize the rob
 ```bash
 ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=/home/epik-software/maps/my_map.yaml
 ```
+# Understanding the Nav2 Stack
+
+- **ros-humble-navigation2** : This package provides the navigation stack for ROS 2.
+- **ros-humble-nav2-bringup** : This package provides the launch files for the navigation stack.
+- **ros-humble-turtlebot3** : This package provides the TurtleBot3 packages or simulation or testing, you'll need this package to gain access to all the TurtleBot 3 components. . 
+
+### Global Planner vs Local Planner and Cost Maps 
+ - **Global Planner**: This component computes a path to a specified goal using the entire map and a cost map that assigns costs to each pixel based on proximity to obstacles. It aims to find the lowest cost path while avoiding high-cost areas.
+
+- **Local Planner (Controller)**: The local planner receives the path from the global planner and controls the robot's movements in real time. It updates more frequently than the global planner in order to make responsive adjustments as the robot navigates its environment.
+
+- **Analogy with GPS**: The global planner is likened to a GPS in a car that computes the route, while the local planner acts like the driver, making real-time decisions during navigation.
+
+- **Cost Maps**: Both planners use cost maps that influence navigation decisions, impacting how paths are determined and followed.
+- **Update Frequencies**: The global planner updates the path approximately once per second, while the local planner operates at a much higher frequency for better responsiveness.
+
+- **Parameters**: In order to manipulate the behavior of nav2 you can access the parameters using rqt gui. plugins -> Configuration -> Dynamic Reconfigure. After that expand global_costmap and select global_costmap.
 
 ---
+
+# Building Your Own World for Navigation in Gazebo
+
+*  
+
